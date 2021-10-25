@@ -33,7 +33,8 @@ public class PersistenceController {
                 map.put("javax.persistence.jdbc.user", Conexion.getUsuario());
                 map.put("javax.persistence.jdbc.password", Conexion.getContrasena());
             em = Persistence.createEntityManagerFactory("ProyectoCDAPU", map).createEntityManager();
-            } catch (Exception ex) {
+            } catch (Exception ex) {            
+                System.out.println("Falla en el getEntityManager()git status");
                 Logger.getLogger(PersistenceController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
