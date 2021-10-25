@@ -35,7 +35,7 @@ public class PersistenceController {
                 em = Persistence.createEntityManagerFactory("ProyectoCDAPU", map).createEntityManager();
                 System.out.println("getEntityManager() inicializado con exito");
             } catch (Exception ex) {            
-                System.out.println("Falla en el getEntityManager()");
+                System.out.println("Falla en el getEntityManager(prueba)");
                 Logger.getLogger(PersistenceController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
