@@ -186,6 +186,7 @@ public class Evento_Datos extends javax.swing.JFrame {
         
         this.limpiarCampos();
         this.dispose();
+        System.exit(0);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     
