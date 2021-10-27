@@ -10,6 +10,7 @@ import com.soltelec.eventos.model.EstadosEvento;
 import com.soltelec.eventos.model.EventoCda;
 import com.soltelec.eventos.utils.CMensajes;
 import java.awt.Font;
+import javax.swing.JOptionPane;
 import org.apache.log4j.Logger;
 //----------
 
@@ -107,7 +108,7 @@ public class Evento_Datos extends javax.swing.JFrame {
 
         jLabel6.setText("Acción");
 
-        cmbPista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "1:Moto", "2:Liviano", "3: Mixto" }));
+        cmbPista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "1 : Moto", "2 : Liviano", "3 : Mixto" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -186,7 +187,7 @@ public class Evento_Datos extends javax.swing.JFrame {
         
         System.out.println("Se ha cancelado la insercion de un evento");
         limpiarCampos();
-        this.dispose();
+        //this.dispose();
         System.exit(0);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -209,10 +210,10 @@ public class Evento_Datos extends javax.swing.JFrame {
                     eventoCda.setAccion(txtAccion.getText());
                     eventoCda.setIdEstado(new EstadosEvento(cmbEstado.getSelectedIndex()));
                     //eventoCda.setPista(txtPista.getText());
-                    eventoCda.setPista(String.valueOf(cmbEstado.getSelectedIndex()));
+                    eventoCda.setPista(String.valueOf(cmbPista.getSelectedIndex()));
                     eventoCda.setUsuario(usuario);
                     eventoCda.setFinicial(dteFInicial.getDate());
-                    eventoCda.setFfinal(dteFInicial.getDate());
+                    eventoCda.setFfinal(dteFFinal.getDate());
                     eventoCdaJpaController.create(eventoCda);///---                  
                 
                     System.out.println("-------------------------------------------");
@@ -229,17 +230,25 @@ public class Evento_Datos extends javax.swing.JFrame {
                     }else{
                                 Logger.getLogger("igrafica").info("Estado: FINALIZADO");
                     }
+                    
+                    switch(String.valueOf(cmbPista.getSelectedIndex())){
+                            case "1":  Logger.getLogger("igrafica").info("Pista: MOTO"); break;
+                            case "2" : Logger.getLogger("igrafica").info("Pista: LIVIANO"); break;
+                            case "3" : Logger.getLogger("igrafica").info("Pista: MIXTO"); break;
+                    }
+              
                     Logger.getLogger("igrafica").info("Fecha inicial: "+dteFInicial.getDate());
                     Logger.getLogger("igrafica").info("Fecha final: "+dteFInicial.getDate());
                     Logger.getLogger("igrafica").info("El usuario  "+usuario+" ha guardado un EVENTO");
                     Logger.getLogger("igrafica").info("-----------------------------------------------");
                     
                     limpiarCampos();
-                    this.dispose();          
+                    //JOptionPane.showMessageDialog(null, "El usuario  "+usuario+" ha guardado un EVENTO con exito");
+                    //this.dispose();          
                 }else{
                     Logger.getLogger("igrafica").info("-----------------------------------------------");
                     Logger.getLogger("igrafica").info("--------No se puede guardar el evento----------");
-                    Logger.getLogger("igrafica").info("-----------------------------------------------");
+                    Logger.getLogger("igrafica").info("-----------------------------------------------");          
                 }        
                 //--------------
            
@@ -248,6 +257,7 @@ public class Evento_Datos extends javax.swing.JFrame {
                 System.out.println("No se puede guardar el evento : "+e.getMessage());
                 System.out.println("-------------------------------------------------------------------------------");
                 limpiarCampos();
+                //JOptionPane.showConfirmDialog(null,"¿Se agregará un evento manual y el SART se cerrará, esta seguro?","EVENTO MANUAL",JOptionPane.YES_NO_OPTION);
         }
       System.exit(0);
     }//GEN-LAST:event_btnGuardarActionPerformed
