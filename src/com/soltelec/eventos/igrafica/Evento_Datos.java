@@ -184,9 +184,9 @@ public class Evento_Datos extends javax.swing.JFrame {
         Logger.getLogger("igrafica").info("El usuario "+ usuario +" ha cancelado la inserccion de un EVENTO");
         Logger.getLogger("igrafica").info("----------------------------------------------------------------------------------------");
         
-        this.limpiarCampos();
-        this.dispose();
         System.out.println("Se ha cancelado la insercion de un evento");
+        limpiarCampos();
+        this.dispose();
         System.exit(0);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
