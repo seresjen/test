@@ -32,7 +32,7 @@ public class PersistenceController {
                 map.put("javax.persistence.jdbc.url", Conexion.getUrl());
                 map.put("javax.persistence.jdbc.user", Conexion.getUsuario());
                 map.put("javax.persistence.jdbc.password", Conexion.getContrasena());
-                em = Persistence.createEntityManagerFactory("ProyectoCDAPU", map).createEntityManager();
+                em = Persistence.createEntityManagerFactory("ProyectoPU", map).createEntityManager();
                 System.out.println("getEntityManager() inicializado con exito");
             } catch (Exception ex) {            
                 System.out.println("Falla en el getEntityManager(prueba)");
